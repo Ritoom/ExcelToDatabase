@@ -1,4 +1,4 @@
-package fun.ritoom;
+package fun.ritoom.model;
 
 public class TableCommand {
     String column_name;

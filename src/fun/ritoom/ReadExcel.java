@@ -1,5 +1,6 @@
 package fun.ritoom;
 
+import fun.ritoom.model.TableCommand;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -8,7 +9,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class ReadExcel {
     public static void main(String[] args) throws IOException {
@@ -18,11 +18,12 @@ public class ReadExcel {
     static XSSFRow row;
     static ArrayList<TableCommand> stringsColumn = new ArrayList<>();
     static String table_name = "table_name";
+    static String file_path = "file.xlsx";
+    static int sheet_num = 0;
     public static void readExcelFile() throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(new File("file.xlsx"));
+        FileInputStream fileInputStream = new FileInputStream(new File(file_path));
         XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
-        XSSFSheet sheet = workbook.getSheetAt(0);
-        Iterator<Row> rowIterator = sheet.iterator();
+        XSSFSheet sheet = workbook.getSheetAt(sheet_num);
 
         for(int i=sheet.getFirstRowNum();i<=sheet.getLastRowNum();i++){
             TableCommand tableCommand= new TableCommand();

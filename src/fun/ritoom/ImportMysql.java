@@ -1,5 +1,7 @@
 package fun.ritoom;
 
+import fun.ritoom.model.TableCommand;
+
 import java.sql.*;
 
 public class ImportMysql {
@@ -7,7 +9,7 @@ public class ImportMysql {
     private static final String USER = "user";
     private static final String PASSWORD = "password";
 
-    public static void importMySql(TableCommand tableCommand,String table_name){
+    public static void importMySql(TableCommand tableCommand, String table_name){
         try {
             Class.forName("com.mysql.jdbc.Driver");//加载驱动程序
             Connection conn = DriverManager.getConnection(URL,USER,PASSWORD);
