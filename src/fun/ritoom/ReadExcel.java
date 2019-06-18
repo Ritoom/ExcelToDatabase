@@ -17,14 +17,14 @@ public class ReadExcel {
 
     static XSSFRow row;
     static ArrayList<TableCommand> stringsColumn = new ArrayList<>();
-    static String table_name = "rf_caigxjgxx";
+    static String table_name = "table_name";
     public static void readExcelFile() throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(new File("file_new.xlsx"));
+        FileInputStream fileInputStream = new FileInputStream(new File("file.xlsx"));
         XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
         XSSFSheet sheet = workbook.getSheetAt(0);
         Iterator<Row> rowIterator = sheet.iterator();
 
-        for(int i=sheet.getFirstRowNum();i<sheet.getLastRowNum();i++){
+        for(int i=sheet.getFirstRowNum();i<=sheet.getLastRowNum();i++){
             TableCommand tableCommand= new TableCommand();
             Row row = sheet.getRow(i);
             for (int j=row.getFirstCellNum();j<=row.getLastCellNum();j++){
@@ -50,34 +50,5 @@ public class ReadExcel {
             }
         }
         fileInputStream.close();
-//        while (rowIterator.hasNext()){
-//            row = (XSSFRow)rowIterator.next();
-//            Iterator <Cell>  cellIterator = row.cellIterator();
-//            String s = null;
-//
-//            TableCommand tableCommand = new TableCommand();
-//            while (cellIterator.hasNext()){
-//                Cell cell = cellIterator.next();
-//
-//                switch (cell.getCellType()){
-//                    case Cell.CELL_TYPE_STRING:
-//                        s = cell.getStringCellValue();
-//                        stringsColumn.add(s);
-//                        break;
-//                }
-//                //每列
-//                System.out.println(stringsColumn);
-//            }
-//            //每行
-//            //System.out.println(strings.get(strings.size() -1).toString());
-//            //String[] culumn = s.split(" ");
-////            tableCommand.setTable_name(strings);
-////            tableCommand.setColumn_name(culumn[1]);
-////            tableCommand.setCommand(culumn[2]);
-////            System.out.println(tableCommand.toString());
-//
-//            //ImportMysql.importMySql(tableCommand);
-        //}
-        //fileInputStream.close();
     }
 }
