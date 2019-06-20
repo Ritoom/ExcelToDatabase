@@ -1,5 +1,6 @@
-package fun.ritoom;
+package fun.ritoom.utils;
 
+import fun.ritoom.dao.ImportMysql;
 import fun.ritoom.model.TableCommand;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -8,19 +9,15 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ReadExcel {
-    public static void main(String[] args) throws IOException {
-        readExcelFile();
-    }
 
-    static XSSFRow row;
     static ArrayList<TableCommand> stringsColumn = new ArrayList<>();
-    static String table_name = "table_name";
-    static String file_path = "file.xlsx";
     static int sheet_num = 0;
-    public static void readExcelFile() throws IOException {
+    public static void readExcelFile(String table_name, String file_path, Connection conn) throws IOException, SQLException {
         FileInputStream fileInputStream = new FileInputStream(new File(file_path));
         XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
         XSSFSheet sheet = workbook.getSheetAt(sheet_num);
@@ -47,7 +44,7 @@ public class ReadExcel {
                 stringsColumn) {
             System.out.println(str.toString());
             if (str.getColumn_name().length() > 0 && str.getColumn_name() != null){
-                ImportMysql.importMySql(str,table_name);
+                ImportMysql.importMySql(str,table_name,conn);
             }
         }
         fileInputStream.close();
