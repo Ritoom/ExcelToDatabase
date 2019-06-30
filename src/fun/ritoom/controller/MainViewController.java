@@ -1,7 +1,5 @@
 package fun.ritoom.controller;
 
-import fun.ritoom.dao.ImportMysql;
-import fun.ritoom.model.Setting;
 import fun.ritoom.utils.DbUtils;
 import fun.ritoom.utils.ReadExcel;
 import javafx.event.ActionEvent;
@@ -11,8 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -23,8 +23,17 @@ public class MainViewController {
     public Button openFilePath;
     public TextField tableName;
     public TextField filePath;
+    private Connection conn;
 
     public void openFilePath(MouseEvent mouseEvent) {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter
+                ("EXCEL文件 (*.xlsx)","*.xlsx");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        Stage stage = new Stage();
+        File file = fileChooser.showOpenDialog(stage);
+        String path = file.getPath();
+        filePath.setText(path);
     }
 
     public void start(MouseEvent mouseEvent) {
@@ -33,8 +42,9 @@ public class MainViewController {
         System.out.println(table_name);
         System.out.println(file_path);
         try {
-            Connection conn = DbUtils.linkDb();
+            conn = DbUtils.linkDb();
             ReadExcel.readExcelFile(table_name, file_path, conn);
+            conn.close();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("文件未找到");
