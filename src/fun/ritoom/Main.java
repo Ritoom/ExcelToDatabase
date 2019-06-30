@@ -1,39 +1,28 @@
 package fun.ritoom;
 
-import fun.ritoom.dao.ImportMysql;
-import fun.ritoom.utils.ReadExcel;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 
-public class Main {
+public class Main extends Application {
     static final String table_name = "table_name";
     static final String file_path = "file.xlsx";
-    static final String IP = "";
-    static final String DATABASE_POST = "";
-    static final String DATABASE = "";
-    static final String USER = "";
-    static final String PASSWORD = "";
+
+    static Connection conn;
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent parent = FXMLLoader.load(getClass().getResource("mainview.fxml"));
+        primaryStage.setTitle("注释导入工具");
+        primaryStage.setScene(new Scene(parent, 300, 275));
+        primaryStage.show();
+    }
+
     public static void main(String[] args) {
-        Connection conn = null;
-        try {
-            conn = ImportMysql.createConn(IP,DATABASE_POST,DATABASE,USER,PASSWORD);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("未找到驱动类");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Mysql连接失败");
-        }
-        try {
-            ReadExcel.readExcelFile(table_name,file_path,conn);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("读取Excel文件失败");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("注释插入失败");
-        }
+        launch(args);
     }
 }

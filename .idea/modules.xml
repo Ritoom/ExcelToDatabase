@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ExcelToDatabase.iml" filepath="$PROJECT_DIR$/ExcelToDatabase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ImportDB4Comment.iml" filepath="$PROJECT_DIR$/ImportDB4Comment.iml" />
     </modules>
   </component>
 </project>
