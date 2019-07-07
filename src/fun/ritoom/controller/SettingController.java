@@ -6,12 +6,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.prefs.Preferences;
 
 public class SettingController {
+    private static final Logger logger = LoggerFactory.getLogger(SettingController.class);
     public TextField ip;
     public TextField port;
     public TextField database;
@@ -26,7 +29,7 @@ public class SettingController {
         pref.put("database",database.getText());
         pref.put("user",user.getText());
         pref.put("password",password.getText());
-        System.out.println(pref.get("ip","localhost"));
+        logger.info("保存ip地址为:"+ip.getText());
     }
 
     public void testLink(MouseEvent mouseEvent) {

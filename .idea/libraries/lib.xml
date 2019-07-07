@@ -15,7 +15,9 @@
       <root url="jar://$PROJECT_DIR$/lib/poi-excelant-3.15.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/curvesapi-1.04.jar!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="https://repo1.maven.org/maven2/" />
+    </JAVADOC>
     <SOURCES />
   </library>
 </component>

@@ -15,11 +15,12 @@ import java.util.ArrayList;
 
 public class ReadExcel {
 
-    static ArrayList<TableCommand> stringsColumn = new ArrayList<>();
-    static int sheet_num = 0;
+    private static ArrayList<TableCommand> stringsColumn = new ArrayList<>();
+
     public static void readExcelFile(String table_name, String file_path, Connection conn) throws IOException, SQLException {
         FileInputStream fileInputStream = new FileInputStream(new File(file_path));
         XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
+        int sheet_num = 0;
         XSSFSheet sheet = workbook.getSheetAt(sheet_num);
 
         for(int i=sheet.getFirstRowNum();i<=sheet.getLastRowNum();i++){
@@ -42,7 +43,6 @@ public class ReadExcel {
 
         for (TableCommand str :
                 stringsColumn) {
-            System.out.println(str.toString());
             if (str.getColumn_name().length() > 0 && str.getColumn_name() != null){
                 ImportMysql.importMySql(str,table_name,conn);
             }
