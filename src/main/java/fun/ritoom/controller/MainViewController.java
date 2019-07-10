@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -24,6 +25,7 @@ public class MainViewController {
     public Button openFilePath;
     public TextField tableName;
     public TextField filePath;
+    public ImageView imageView;
     private Connection conn;
     private static final Logger logger = LoggerFactory.getLogger(MainViewController.class);
 
