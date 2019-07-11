@@ -18,7 +18,7 @@ public class Main extends Application {
         Parent parent = FXMLLoader.load(getClass().getResource("/fxml/mainview.fxml"));
         primaryStage.setTitle("注释导入工具");
         primaryStage.setScene(new Scene(parent, 400, 275));
-        parent.getStylesheets().add("/CSS/style.css");
+        //parent.getStylesheets().add("/CSS/style.css");
         primaryStage.show();
         logger.debug("start() : { }");
     }
